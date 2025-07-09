@@ -1,0 +1,18 @@
+/* the slides */
+.himas {
+	.slick-track {
+		display: flex !important;
+		gap: 20px;
+
+		.slick-slide {
+			height: inherit !important;
+			filter: blur(2px);
+		}
+		.slick-slide > div {
+			height: 100%;
+		}
+		.slick-active {
+			filter: blur(0);
+		}
+	}
+}
