@@ -27,6 +27,8 @@ baseApi.interceptors.response.use(
 			}
 			case 403: {
 				console.error('Forbidden: You do not have permission to access this resource.');
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');
 				return Promise.reject(error);
 			}
 			default: {

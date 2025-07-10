@@ -2,10 +2,11 @@ import routeName from '@com/config';
 import getClassname from '@com/utils/getClassname';
 import { faCartShopping, faChevronDown, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { JSX } from 'react';
+import { JSX, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import SearchComponent from './components/SearchComponent/SearchComponent';
+import { AuthContext } from '@com/contexts/AuthContext';
 
 const categories = [
 	{ name: 'beauty', img: require('@com/assets/img/eyelash.png') },
@@ -36,6 +37,7 @@ const categories = [
 
 const Header = (): JSX.Element => {
 	const cx = getClassname(styles);
+	const { isAuthenticated, user } = useContext(AuthContext);
 	return (
 		<header
 			className={cx(
@@ -87,8 +89,22 @@ const Header = (): JSX.Element => {
 				</div>
 			</div>
 			<div className="flex-1  	h-full justify-center flex items-center">
-				<div className="cursor-pointer hover:bg-[#f1f1f1] ">
-					<FontAwesomeIcon size="xl" icon={faUserCircle} />
+				<div className="cursor-pointer h-full ">
+					{isAuthenticated ? (
+						<img
+							alt="user"
+							src={
+								'https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/491920409_3976609982613727_1089570338156956631_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHVXJr9lr_nrJF7nbYxDA2ikIEMj38hkyKQgQyPfyGTIsFFwKYjyAFbRfgKpE43_WjFCaVyVLDfF_a8-hNsxqaN&_nc_ohc=IFRsGKyRQIYQ7kNvwGr0SZ5&_nc_oc=AdnhnpEsd5tKIhHXRI2dNUFhKQsfvjo2v4IqHdvfENgzB_yNAZmGI1aUL2dvB7DQcKwMDxJsyWkCSFJAQ2uJr-6B&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=TKhCc-ssY2VlfGOu5ppBaA&oh=00_AfQ04C-nBClrmkm9eTkaTnEaGySjkQN8Q2by6RzZckbpPg&oe=68755CA4'
+							}
+							className="h-full aspect-square rounded-full object-fit hover:bg-[#f1f1f1] "
+						/>
+					) : (
+						<FontAwesomeIcon
+							size="xl"
+							icon={faUserCircle}
+							className="hover:bg-[#f1f1f1] "
+						/>
+					)}
 				</div>
 			</div>
 		</header>

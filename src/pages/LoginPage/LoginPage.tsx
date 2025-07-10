@@ -1,6 +1,8 @@
+import routeName from '@com/config';
+import { AuthContext } from '@com/contexts/AuthContext';
 import { getMe } from '@com/services/users/getMe';
 import { login } from '@com/services/users/loginService';
-import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface LoginForm {
@@ -9,9 +11,22 @@ interface LoginForm {
 }
 
 function Login() {
+	const { setIsAuthenticated } = useContext(AuthContext);
 	const [form, setForm] = useState<LoginForm>({ username: '', password: '' });
+	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 	const navigate = useNavigate();
-	useEffect(() => {}, []);
+	useEffect(() => {
+		if (isLoggedIn) {
+			const loginUser = async () => {
+				const result = await login(form.username, form.password);
+				if (result) {
+					setIsAuthenticated(true);
+				}
+				navigate(routeName.homePage());
+			};
+			loginUser();
+		}
+	}, [isLoggedIn]);
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	};
@@ -19,7 +34,7 @@ function Login() {
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		if (form.username && form.password) {
-			// login(form.username, form.password);
+			setIsLoggedIn(true);
 		} else {
 			alert('Please enter both username and password.');
 		}

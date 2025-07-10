@@ -5,13 +5,13 @@ export const login = async (username: string, password: string) => {
 		const response = await baseApi.post('/user/login', {
 			username,
 			password,
-			expiresInMins: 1,
+			expiresInMins: 60,
 		});
 		if (response.status === 200) {
 			const { accessToken, refreshToken, ...user } = response.data;
-			localStorage.setItem('user', JSON.stringify(user));
 			localStorage.setItem('accessToken', accessToken);
 			localStorage.setItem('refreshToken', refreshToken);
+			return user;
 		}
 	} catch (error: any) {
 		switch (error.status) {

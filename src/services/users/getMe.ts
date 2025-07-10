@@ -1,5 +1,4 @@
 import { baseApi } from '../apiBase';
-import refreshToken from './refreshToken';
 
 export const getMe = async () => {
 	try {
@@ -11,7 +10,7 @@ export const getMe = async () => {
 		});
 		console.log('getting user details');
 		if (response.status === 200) {
-			console.log(response);
+			return response;
 		}
 	} catch (error: any) {
 		console.error('An unexpected error occurred:', error.message || error);
