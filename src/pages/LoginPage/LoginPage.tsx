@@ -11,7 +11,7 @@ interface LoginForm {
 }
 
 function Login() {
-	const { setIsAuthenticated } = useContext(AuthContext);
+	const { setIsAuthenticated, setUser } = useContext(AuthContext);
 	const [form, setForm] = useState<LoginForm>({ username: '', password: '' });
 	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 	const navigate = useNavigate();
@@ -20,7 +20,10 @@ function Login() {
 			const loginUser = async () => {
 				const result = await login(form.username, form.password);
 				if (result) {
-					setIsAuthenticated(true);
+					setIsAuthenticated(() => {
+						setUser(result);
+						return true;
+					});
 				}
 				navigate(routeName.homePage());
 			};

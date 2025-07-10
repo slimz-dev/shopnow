@@ -9,6 +9,7 @@ import Login from './pages/LoginPage/LoginPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import { AuthContext } from './contexts/AuthContext';
 import { Navigate, Outlet } from 'react-router-dom';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 type childrenProps = {
 	children: ReactNode;
@@ -50,6 +51,11 @@ const privateRoutes: routesProps[] = [
 	{
 		path: routeName.cartPage(),
 		component: CartPage,
+		layout: DefaultLayout,
+	},
+	{
+		path: routeName.profilePage(),
+		component: ProfilePage,
 		layout: DefaultLayout,
 	},
 ];

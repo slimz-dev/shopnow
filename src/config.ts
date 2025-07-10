@@ -6,6 +6,7 @@ const routeName = {
 	cartPage: () => '/cart',
 	loginPage: () => '/login',
 	registerPage: () => '/register',
+	profilePage: () => '/user/profile',
 };
 
 export default routeName;
