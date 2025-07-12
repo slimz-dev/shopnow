@@ -5,7 +5,7 @@ export const login = async (username: string, password: string) => {
 		const response = await baseApi.post('/user/login', {
 			username,
 			password,
-			expiresInMins: 60,
+			expiresInMins: 60 * 60,
 		});
 		if (response.status === 200) {
 			const { accessToken, refreshToken, ...user } = response.data;

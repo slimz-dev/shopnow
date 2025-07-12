@@ -61,7 +61,7 @@ const privateRoutes: routesProps[] = [
 ];
 
 const PrivateRoute = (): JSX.Element => {
-	const { isAuthenticated } = useContext(AuthContext);
+	const isAuthenticated = localStorage.getItem('isLoggedIn');
 	return <>{isAuthenticated ? <Outlet /> : <Navigate to={routeName.loginPage()} />}</>;
 };
 export { publicRoutes, privateRoutes };

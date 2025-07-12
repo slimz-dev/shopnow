@@ -58,9 +58,9 @@ const Header = (): JSX.Element => {
 				<FontAwesomeIcon icon={faChevronDown} />
 				<div className="absolute border hidden rounded-2xl overflow-hidden max-h-96  bg-white top-full group-hover:flex flex-col z-10 ">
 					<div className="overflow-y-scroll">
-						{categories.map((cate) => {
+						{categories.map((cate, index) => {
 							return (
-								<Link to={routeName.categoryPage(cate.name)}>
+								<Link key={index} to={routeName.categoryPage(cate.name)}>
 									<div className="w-full cursor-pointer hover:bg-[#d5d5d5]">
 										<div className="h-12 w-max flex items-center p-2 px-4 ">
 											<img

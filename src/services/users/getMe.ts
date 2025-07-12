@@ -8,11 +8,12 @@ export const getMe = async () => {
 				Authorization: `Bearer ${accessToken}`,
 			},
 		});
-		console.log('getting user details');
 		if (response.status === 200) {
+			localStorage.setItem('isLoggedIn', JSON.stringify(true));
 			return response;
 		}
 	} catch (error: any) {
 		console.error('An unexpected error occurred:', error.message || error);
+		return error;
 	}
 };

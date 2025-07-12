@@ -3,9 +3,10 @@ import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext<any>(null);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-	const [user, setUser] = useState<{ username: string } | null>(null);
-	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-	console.log(user);
+	const [user, setUser] = useState({});
+	const [isAuthenticated, setIsAuthenticated] = useState<any>(
+		JSON.parse(localStorage.getItem('isLoggedIn') || 'false')
+	);
 	useEffect(() => {
 		const getUser = async () => {
 			const result = await getMe();
@@ -15,7 +16,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 			}
 		};
 		getUser();
-	}, []);
+	}, [isAuthenticated]);
 	const data = {
 		user,
 		setUser,
