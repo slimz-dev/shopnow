@@ -27,6 +27,7 @@ baseApi.interceptors.response.use(
 					const response: any = await handleRefreshToken();
 					if (response) {
 						const { accessToken, refreshToken } = response.data;
+						console.log('setting new token');
 						localStorage.setItem('accessToken', accessToken);
 						localStorage.setItem('refreshToken', refreshToken);
 						localStorage.setItem('isLoggedIn', JSON.stringify(true));

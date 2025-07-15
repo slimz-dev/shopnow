@@ -15,23 +15,19 @@ const Address = (): JSX.Element => {
 						information
 					</h3>
 				</div>
-				<div className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center cursor-pointer hover:bg-blue-600">
-					<FontAwesomeIcon icon={faPlus} />
-					<span className="ml-3">Add new address</span>
-				</div>
 			</div>
 			<div className="flex items-center justify-between">
 				<div>
-					<div className="flex justify-between items-center mb-4">
-						<div>{user.firstName}</div>
-						<div>{user.phone}</div>
+					<div className="flex  items-center mb-4">
+						<div className="border-r border-blue-200 pr-3 mr-3">{user.firstName}</div>
+						<div className="text-[#8b8b8b] text-sm">{user.phone}</div>
 					</div>
-					<div>
+					<div className="text-[#8b8b8b] text-sm">
 						<div>{user.address.address}</div>
 						<div>{`${user.address.city}, ${user.address.state}, ${user.address.country}`}</div>
 					</div>
 				</div>
-				<div>Update</div>
+				<div className="text-blue-500 cursor-pointer">Update</div>
 			</div>
 		</div>
 	);

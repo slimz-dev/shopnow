@@ -28,7 +28,7 @@ function Login() {
 			};
 			loginUser();
 		}
-		if (user) {
+		if (Object.keys(user).length !== 0) {
 			navigate(routeName.homePage());
 		}
 	}, [isLoggedIn, user]);

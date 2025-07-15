@@ -10,7 +10,12 @@ const Bank = (): JSX.Element => {
 		accountNumber: user.bank.cardNumber,
 		accountHolderName: user.firstName,
 		bankName: 'MB - NHTMCP QUAN DOI',
+		bankBrand: 'CN Hai Ba Trung',
 		bankImage: 'https://cdn.haitrieu.com/wp-content/uploads/2022/02/Icon-MB-Bank-MBB.png',
+	};
+
+	const hiddenAccountNumber = (accountNumber: string) => {
+		return `* ${accountNumber.slice(accountNumber.length - 4)}`;
 	};
 	return (
 		<>
@@ -20,10 +25,6 @@ const Bank = (): JSX.Element => {
 					<h3 className="border-b pb-2  italic">
 						Manage your bank details to facilitate transactions and payments
 					</h3>
-				</div>
-				<div className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center cursor-pointer hover:bg-blue-600">
-					<FontAwesomeIcon icon={faPlus} />
-					<span className="ml-3">Add new card</span>
 				</div>
 			</div>
 			<div>
@@ -36,24 +37,37 @@ const Bank = (): JSX.Element => {
 					</div>
 				) : (
 					<div className="flex items-center justify-between ">
-						<div className="flex items-center">
-							<div>
-								<img alt="bank" className="w-16 h-16" src={bankDetails.bankImage} />
+						<div className="flex  items-center">
+							<div className="h-16">
+								<img
+									alt="bank"
+									className="h-full aspect-square"
+									src={bankDetails.bankImage}
+								/>
 							</div>
-							<div>
-								<div className="flex flex-col ">
-									<span className="font-semibold">{bankDetails.bankName}</span>
+
+							<div className="flex flex-col  justify-between mr-28 ml-6">
+								<span className=" mb-4">{bankDetails.bankName}</span>
+								<div>
 									<div>
-										<span>Name:</span>
-										<span className="font-semibold">
-											{bankDetails.accountHolderName}
-										</span>
+										<span className="mr-2">Name:</span>
+										<span className="">{bankDetails.accountHolderName}</span>
+									</div>
+									<div>
+										<span className="mr-2">Brand:</span>
+										<span className="">{bankDetails.bankBrand}</span>
 									</div>
 								</div>
 							</div>
-							<div>{bankDetails.accountNumber}</div>
+
+							<div className="flex items-center">
+								{hiddenAccountNumber(bankDetails.accountNumber)}
+							</div>
 						</div>
-						<div>Delete</div>
+						<div className="flex">
+							<div className="underline cursor-pointer">Update</div>
+							<div className="underline cursor-pointer ml-8">Delete</div>
+						</div>
 					</div>
 				)}
 			</div>
