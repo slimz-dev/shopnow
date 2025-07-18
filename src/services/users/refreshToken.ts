@@ -11,6 +11,10 @@ const refreshToken = async () => {
 			expiresInMins: 60,
 		});
 		if (request.status === 200) {
+			const { accessToken, refreshToken } = request.data;
+			localStorage.setItem('accessToken', accessToken);
+			localStorage.setItem('refreshToken', refreshToken);
+			localStorage.setItem('isLoggedIn', JSON.stringify(true));
 			return request;
 		}
 	} catch (error: any) {

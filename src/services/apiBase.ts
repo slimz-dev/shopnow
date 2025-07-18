@@ -4,13 +4,15 @@ import handleRefreshToken from './users/refreshToken';
 const baseApi = axios.create({
 	baseURL: 'https://dummyjson.com',
 });
-
+let refreshedToken: any = null;
+let requestQueue: any = [];
 baseApi.interceptors.response.use(
 	(res: any) => {
 		console.log(res);
 		return res;
 	},
 	async (error) => {
+		console.log(error);
 		switch (error.status) {
 			case 401: {
 				try {
@@ -24,14 +26,15 @@ baseApi.interceptors.response.use(
 						return Promise.reject(error);
 					}
 					console.error('Unauthorized: Attempting to refresh token.');
-					const response: any = await handleRefreshToken();
-					if (response) {
-						const { accessToken, refreshToken } = response.data;
-						console.log('setting new token');
-						localStorage.setItem('accessToken', accessToken);
-						localStorage.setItem('refreshToken', refreshToken);
-						localStorage.setItem('isLoggedIn', JSON.stringify(true));
-						return response;
+					console.log(refreshedToken);
+					if (!refreshedToken) {
+						refreshedToken = handleRefreshToken();
+					}
+					const newToken = await refreshedToken;
+					if (newToken) {
+						const { accessToken } = newToken.data;
+						error.config.headers['Authorization'] = `Bearer ${accessToken}`;
+						return baseApi(error.config);
 					}
 					return Promise.reject(error);
 				} catch (error) {
