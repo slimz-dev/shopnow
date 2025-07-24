@@ -59,17 +59,6 @@ const ProfileSidebar = ({ activeTab, setActiveTab }: ProfileSidebarProps): JSX.E
 						>
 							Address
 						</div>
-						<div
-							onClick={() => setActiveTab(3)}
-							className={cl(
-								'text-sm text-gray-500 leading-[2.5] hover:text-blue-400 cursor-pointer',
-								{
-									'!text-blue-400': activeTab === 3,
-								}
-							)}
-						>
-							Change Password
-						</div>
 					</div>
 				</div>
 			</div>

@@ -3,7 +3,6 @@ import ProfileSidebar from './components/ProfileSidebar/ProfileSidebar';
 import BasicProfile from './components/BasicProfile/BasicProfile';
 import Bank from './components/Bank/Bank';
 import Address from './components/Address/Address';
-import ChangePassword from './components/ChangePassword/ChangePassword';
 
 const ProfilePage = (): JSX.Element => {
 	const [activeTab, setActiveTab] = useState<number>(0);
@@ -15,7 +14,6 @@ const ProfilePage = (): JSX.Element => {
 				{activeTab === 0 && <BasicProfile />}
 				{activeTab === 1 && <Bank />}
 				{activeTab === 2 && <Address />}
-				{activeTab === 3 && <ChangePassword />}
 			</div>
 		</div>
 	);

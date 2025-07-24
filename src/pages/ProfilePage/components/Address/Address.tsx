@@ -1,10 +1,13 @@
 import { AuthContext } from '@com/contexts/AuthContext';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { JSX, useContext } from 'react';
+import { JSX, useContext, useState } from 'react';
+import Modal from './components/updateModal';
 
 const Address = (): JSX.Element => {
 	const { user } = useContext(AuthContext);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [newAddress, setNewAddress] = useState<string>('');
 	return (
 		<div>
 			<div className="flex items-center justify-between border-b mb-6">
@@ -23,11 +26,26 @@ const Address = (): JSX.Element => {
 						<div className="text-[#8b8b8b] text-sm">{user.phone}</div>
 					</div>
 					<div className="text-[#8b8b8b] text-sm">
-						<div>{user.address.address}</div>
-						<div>{`${user.address.city}, ${user.address.state}, ${user.address.country}`}</div>
+						<div>{newAddress ? newAddress.split(',')[0] : user.address.address}</div>
+						<div>
+							{newAddress
+								? `
+										${newAddress.split(',')[1]}, 
+										${newAddress.split(',')[2]},
+										${newAddress.split(',')[3]}
+								  `
+								: `${user.address.city}, ${user.address.state}, ${user.address.country}`}
+						</div>
 					</div>
 				</div>
-				<div className="text-blue-500 cursor-pointer">Update</div>
+				<div onClick={() => setIsOpen(true)} className="text-blue-500 cursor-pointer">
+					Update
+				</div>
+				<Modal
+					isOpen={isOpen}
+					onClose={() => setIsOpen(false)}
+					onChangeAddress={(address) => setNewAddress(address)}
+				/>
 			</div>
 		</div>
 	);
