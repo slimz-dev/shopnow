@@ -75,6 +75,7 @@ const ProductPage = (): JSX.Element => {
 											})}
 										>
 											<img
+												alt="product"
 												className={cx(
 													' hover:scale-150 duration-1000 cursor-pointer'
 												)}
@@ -90,6 +91,7 @@ const ProductPage = (): JSX.Element => {
 							className="flex-[3] px-4 cursor-pointer"
 						>
 							<img
+								alt="product"
 								className="border h-full rounded-2xl"
 								src={item.images[selectedItem]}
 							/>
@@ -165,7 +167,7 @@ const ProductPage = (): JSX.Element => {
 								</div>
 							</div>
 							<div className="flex justify-between items-center mt-6">
-								<ProductCount />
+								<ProductCount value={1} />
 								<div className="bg-black cursor-pointer  text-white text-xl p-4 flex-[0.95] flex justify-center rounded-full">
 									Add to Cart
 								</div>

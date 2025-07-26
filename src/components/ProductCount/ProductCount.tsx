@@ -2,16 +2,32 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { JSX, useState } from 'react';
 
-const ProductCount = (): JSX.Element => {
-	const [count, setCount] = useState<number>(1);
+type productCountProps = {
+	value: number;
+	handlerFunc?: (productQuantity: number, productID: number) => void;
+	productID?: number;
+};
+
+const ProductCount = ({ value, handlerFunc, productID }: productCountProps): JSX.Element => {
+	const [count, setCount] = useState<number>(value);
 	const handleCount = (countType: number) => {
 		if (countType) {
-			console.log(countType);
-			setCount((prev) => prev + 1);
+			setCount((prev) => {
+				if (handlerFunc && productID) {
+					handlerFunc(prev + 1, productID);
+				}
+				return prev + 1;
+			});
 		} else {
-			setCount((prev) => prev - 1);
+			setCount((prev) => {
+				if (handlerFunc && productID) {
+					handlerFunc(prev === 1 ? 1 : prev - 1, productID);
+				}
+				return prev === 1 ? 1 : prev - 1;
+			});
 		}
 	};
+
 	return (
 		<div className="p-2 px-4 rounded-full bg-[#eeeeee] flex items-center justify-between">
 			<FontAwesomeIcon
