@@ -4,8 +4,8 @@ type cartProducts = {
 	id: number;
 	quantity: number;
 };
-const updateCart = async (userID: number, cart: cartProducts) => {
-	const result = await baseApi.put(`/carts/${userID}`, {
+const updateCart = async (cartID: number, cart: cartProducts) => {
+	const result = await baseApi.put(`/carts/${cartID}`, {
 		merge: true,
 		products: [
 			{

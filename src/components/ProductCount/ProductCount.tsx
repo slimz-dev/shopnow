@@ -1,6 +1,6 @@
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { JSX, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 
 type productCountProps = {
 	value: number;
@@ -10,6 +10,9 @@ type productCountProps = {
 
 const ProductCount = ({ value, handlerFunc, productID }: productCountProps): JSX.Element => {
 	const [count, setCount] = useState<number>(value);
+	useEffect(() => {
+		setCount(value);
+	}, [value]);
 	const handleCount = (countType: number) => {
 		if (countType) {
 			setCount((prev) => {

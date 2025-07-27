@@ -18,6 +18,8 @@ import ProductRecommend from './components/ProductRecommend/ProductRecommend';
 import ProductReviews from './components/Rating/ProductReviews';
 import style from './ProductPage.module.scss';
 import ImgModal from './components/ImgModal/ImgModal';
+import { useAppDispatch, useAppSelector } from '@com/redux/hooks';
+import { updateCartFromRedux } from '@com/redux/slices/counter/counterSlice';
 
 type DynamicState = {
 	[key: string]: any;
@@ -27,8 +29,9 @@ const ProductPage = (): JSX.Element => {
 	const [selectedItem, setSelectedItem] = useState<number>(0);
 	const [modalSelectedItem, setModalSelectedItem] = useState<number>(0);
 	const [isOpenImgModal, setIsOpenImgModal] = useState<boolean>(false);
-
 	const [item, setItem] = useState<DynamicState>({});
+	const dispatch = useAppDispatch();
+	const cart = useAppSelector((state) => state.cart);
 	useEffect(() => {
 		setItem({});
 		const fetchProduct = async () => {
@@ -44,6 +47,21 @@ const ProductPage = (): JSX.Element => {
 	const [activeTab, setActiveTab] = useState<number>(0);
 	const cx = getClassname(style);
 	const lineRef = useRef<HTMLDivElement>(null);
+	const [quantity, setQuantity] = useState<number>(1);
+	const updatecart = async (productQuantity: number) => {
+		setQuantity(productQuantity);
+	};
+	const handleAddToCart = () => {
+		dispatch(
+			updateCartFromRedux({
+				cartID: cart.id,
+				updatedItem: {
+					id: productID,
+					quantity: quantity,
+				},
+			})
+		);
+	};
 	const handleAnimation = (e: any, index: number) => {
 		const width = e.target.offsetWidth;
 		if (lineRef && lineRef.current) {
@@ -167,8 +185,15 @@ const ProductPage = (): JSX.Element => {
 								</div>
 							</div>
 							<div className="flex justify-between items-center mt-6">
-								<ProductCount value={1} />
-								<div className="bg-black cursor-pointer  text-white text-xl p-4 flex-[0.95] flex justify-center rounded-full">
+								<ProductCount
+									value={1}
+									handlerFunc={(productQuantity) => updatecart(productQuantity)}
+									productID={item.id}
+								/>
+								<div
+									onClick={handleAddToCart}
+									className="bg-black cursor-pointer  text-white text-xl p-4 flex-[0.95] flex justify-center rounded-full"
+								>
 									Add to Cart
 								</div>
 							</div>

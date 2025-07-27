@@ -13,6 +13,7 @@ import styles from './Header.module.scss';
 import SearchComponent from './components/SearchComponent/SearchComponent';
 import { AuthContext } from '@com/contexts/AuthContext';
 import { signOut } from '@com/utils/signOut';
+import { useAppSelector } from '@com/redux/hooks';
 
 const categories = [
 	{ name: 'beauty', img: require('@com/assets/img/eyelash.png') },
@@ -44,6 +45,7 @@ const categories = [
 const Header = (): JSX.Element => {
 	const cx = getClassname(styles);
 	const { isAuthenticated, user, setIsAuthenticated } = useContext(AuthContext);
+	const cart = useAppSelector((state) => state.cart);
 	return (
 		<header
 			className={cx(
@@ -89,10 +91,16 @@ const Header = (): JSX.Element => {
 				Brands
 			</div>
 			<SearchComponent />
-			<div className="flex-1  	h-full justify-center flex items-center">
-				<div className="cursor-pointer hover:bg-[#f1f1f1] ">
+			<div className="flex-1   	h-full justify-center flex items-center">
+				<Link
+					to={routeName.cartPage()}
+					className="relative cursor-pointer hover:bg-[#f1f1f1] "
+				>
 					<FontAwesomeIcon size="xl" icon={faCartShopping} />
-				</div>
+					<div className="absolute bg-[red] w-8 h-8 text-sm flex items-center justify-center text-white rounded-full top-[-20px] right-[-20px]">
+						{cart.totalQuantity}
+					</div>
+				</Link>
 			</div>
 			<div className="flex-1  	h-full justify-center flex items-center">
 				<div className="cursor-pointer h-full ">

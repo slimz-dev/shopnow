@@ -1,23 +1,34 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
 import getCart from '@com/services/products/getCart';
+import updateCart from '@com/services/products/updateCart';
 
+type productFetchType = {
+	discountedTotal: number;
+	discountedPrice?: never;
+};
+
+type productUpdateType = {
+	discountedPrice: number;
+	discountedTotal?: never;
+};
+type productTypeCommon = {
+	discountPercentage: number;
+	id: number;
+	price: number;
+	quantity: number;
+	thumbnail: string;
+	title: string;
+	total: number;
+};
+
+type productType = productTypeCommon & (productFetchType | productUpdateType);
 // Define a type for the slice state
 interface CartState {
 	discountedTotal: number;
 	id: number;
 	total: number;
-	products: {
-		discountPercentage: number;
-		discountedTotal: number;
-		// discountedPrice
-		id: number;
-		price: number;
-		quantity: number;
-		thumbnail: string;
-		title: string;
-		total: number;
-	}[];
+	products: productType[];
 	totalProducts: number;
 	totalQuantity: number;
 	userId: number;
@@ -32,7 +43,6 @@ const initialState: CartState = {
 		{
 			discountPercentage: 0,
 			discountedTotal: 0,
-			// discountedPrice
 			id: 0,
 			price: 0,
 			quantity: 0,
@@ -46,10 +56,18 @@ const initialState: CartState = {
 	userId: 0,
 };
 
-const fetchCart = createAsyncThunk('cart/fetchCart', async (id: string) => {
+export const fetchCart = createAsyncThunk('cart/fetchCart', async (id: string) => {
 	const response = await getCart(id);
-	return response.data;
+	return response;
 });
+
+export const updateCartFromRedux = createAsyncThunk(
+	'cart/updateCart',
+	async (cartUpdate: { cartID: number; updatedItem: any }) => {
+		const response = await updateCart(cartUpdate.cartID, cartUpdate.updatedItem);
+		return response;
+	}
+);
 
 export const cartSlice = createSlice({
 	name: 'cart',
@@ -68,10 +86,28 @@ export const cartSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCart.fulfilled, (state, action) => {
-			return action.payload;
+			state.discountedTotal = action.payload.discountedTotal;
+			state.id = action.payload.id;
+			state.total = action.payload.total;
+			state.products = action.payload.products;
+			state.totalProducts = action.payload.totalProducts;
+			state.totalQuantity = action.payload.totalQuantity;
+			state.userId = action.payload.userId;
 		});
 		builder.addCase(fetchCart.rejected, (state, action) => {});
 		builder.addCase(fetchCart.pending, (state, action) => {});
+		builder.addCase(updateCartFromRedux.fulfilled, (state, action) => {
+			state.discountedTotal = action.payload.discountedTotal;
+			state.id = action.payload.id;
+			state.total = action.payload.total;
+			state.products = action.payload.products.map((product: productType) => ({
+				...product,
+				discountedTotal: product.discountedPrice,
+			}));
+			state.totalProducts = action.payload.totalProducts;
+			state.totalQuantity = action.payload.totalQuantity;
+			state.userId = action.payload.userId;
+		});
 	},
 });
 
