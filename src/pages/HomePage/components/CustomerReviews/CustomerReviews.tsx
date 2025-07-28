@@ -71,10 +71,10 @@ const CustomerReviews = (): JSX.Element => {
 			<div className="flex justify-between items-end   mb-10">
 				<div className="font-[integral-cf] text-5xl">Our happy customers</div>
 				<div className="flex w-[3%] justify-between">
-					<div onClick={handlePrevious}>
+					<div className="cursor-pointer" onClick={handlePrevious}>
 						<FontAwesomeIcon size="lg" icon={faArrowLeft} />
 					</div>
-					<div onClick={handleNext}>
+					<div className="cursor-pointer" onClick={handleNext}>
 						<FontAwesomeIcon size="lg" icon={faArrowRight} />
 					</div>
 				</div>

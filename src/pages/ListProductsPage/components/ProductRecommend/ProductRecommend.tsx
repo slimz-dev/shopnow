@@ -1,5 +1,5 @@
 import ListProducts from '@com/components/ListProducts/ListProducts';
-import getProductRecommendation from '@com/services/products/getProductsByCategory copy';
+import getProductRecommendation from '@com/services/products/getProductRecommendation';
 import { JSX, useEffect, useState } from 'react';
 
 type ProductRecommendProps = {

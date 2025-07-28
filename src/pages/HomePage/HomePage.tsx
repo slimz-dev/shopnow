@@ -4,6 +4,10 @@ import Slider from 'react-slick';
 import CategoryList from './components/CategoryList/CategoryList';
 import CustomerReviews from './components/CustomerReviews/CustomerReviews';
 import ItemList from './components/ItemList/ItemList';
+import getNewArrival from '@com/services/products/getNewArrivalProduct';
+import getTopSelling from '@com/services/products/getTopSelling';
+import routeName from '@com/config';
+import { productTypes } from '@com/const';
 
 const HomePage = (): JSX.Element => {
 	var settings = {
@@ -86,8 +90,16 @@ const HomePage = (): JSX.Element => {
 				</Slider>
 			</div>
 			<div className="px-20 mb-20">
-				<ItemList header="new arrivals" />
-				<ItemList header="top selling" />
+				<ItemList
+					header="new arrivals"
+					fetch={() => getNewArrival(4)}
+					navigate={routeName.categoryPage(productTypes.NEW_ARRIVAL)}
+				/>
+				<ItemList
+					header="top selling"
+					fetch={() => getTopSelling(4)}
+					navigate={routeName.categoryPage(productTypes.TOP_SELLING)}
+				/>
 				<CategoryList />
 				<CustomerReviews />
 			</div>

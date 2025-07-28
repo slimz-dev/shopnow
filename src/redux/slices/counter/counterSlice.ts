@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
 import getCart from '@com/services/products/getCart';
 import updateCart from '@com/services/products/updateCart';
+import { toast } from 'react-toastify';
 
 type productFetchType = {
 	discountedTotal: number;
@@ -63,9 +64,12 @@ export const fetchCart = createAsyncThunk('cart/fetchCart', async (id: string) =
 
 export const updateCartFromRedux = createAsyncThunk(
 	'cart/updateCart',
-	async (cartUpdate: { cartID: number; updatedItem: any }) => {
+	async (cartUpdate: { cartID: number; updatedItem: any; isAddOutside?: boolean }) => {
 		const response = await updateCart(cartUpdate.cartID, cartUpdate.updatedItem);
-		return response;
+		return {
+			...response,
+			isAddOutside: cartUpdate.isAddOutside,
+		};
 	}
 );
 
@@ -107,6 +111,9 @@ export const cartSlice = createSlice({
 			state.totalProducts = action.payload.totalProducts;
 			state.totalQuantity = action.payload.totalQuantity;
 			state.userId = action.payload.userId;
+			if (action.payload.isAddOutside) {
+				toast.success('Product added successfully');
+			}
 		});
 	},
 });

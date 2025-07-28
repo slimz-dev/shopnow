@@ -59,6 +59,7 @@ const ProductPage = (): JSX.Element => {
 					id: productID,
 					quantity: quantity,
 				},
+				isAddOutside: true,
 			})
 		);
 	};

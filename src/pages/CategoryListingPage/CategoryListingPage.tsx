@@ -13,6 +13,9 @@ import { JSX, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import PaginationButton from './components/PaginationButton/PaginationButton';
 import styles from './CategoryListingPage.module.scss';
+import { productTypes } from '@com/const';
+import getNewArrival from '@com/services/products/getNewArrivalProduct';
+import getTopSelling from '@com/services/products/getTopSelling';
 type DynamicState = {
 	[key: string]: any;
 };
@@ -32,9 +35,17 @@ const CategoryListingPage = (): JSX.Element => {
 	useEffect(() => {
 		if (categorySlug) {
 			const fetchProducts = async () => {
-				const result = await getProductsBycategory(categorySlug, skip, sortValue);
-				console.log(result);
-				setData(result);
+				console.log(categorySlug, productTypes.NEW_ARRIVAL);
+				const result =
+					categorySlug === productTypes.NEW_ARRIVAL
+						? await getNewArrival(20, skip, sortValue)
+						: categorySlug === productTypes.TOP_SELLING
+						? await getTopSelling(20, skip, sortValue)
+						: await getProductsBycategory(categorySlug, skip, sortValue);
+				setData(() => {
+					window.scrollTo(0, 0);
+					return result;
+				});
 			};
 			fetchProducts();
 		}
@@ -46,7 +57,6 @@ const CategoryListingPage = (): JSX.Element => {
 
 	const handleSort = (sortType: number) => {
 		if (sortType) {
-			console.log(sortType);
 			setSortValue({
 				sortBy: 'price',
 				sortType,
@@ -117,7 +127,7 @@ const CategoryListingPage = (): JSX.Element => {
 			<PaginationButton
 				setSkip={setSkip}
 				startIndex={data.skip}
-				pagination={data.limit}
+				pagination={20}
 				total={data.total}
 			/>
 		</div>

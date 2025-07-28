@@ -14,33 +14,7 @@ import SearchComponent from './components/SearchComponent/SearchComponent';
 import { AuthContext } from '@com/contexts/AuthContext';
 import { signOut } from '@com/utils/signOut';
 import { useAppSelector } from '@com/redux/hooks';
-
-const categories = [
-	{ name: 'beauty', img: require('@com/assets/img/eyelash.png') },
-	{ name: 'fragrances', img: require('@com/assets/img/fragrance.png') },
-	{ name: 'furniture', img: require('@com/assets/img/furniture.png') },
-	{ name: 'groceries', img: require('@com/assets/img/grocery.png') },
-	{ name: 'home-decoration', img: require('@com/assets/img/shelf.png') },
-	{ name: 'kitchen-accessories', img: require('@com/assets/img/cutlery.png') },
-	{ name: 'laptops', img: require('@com/assets/img/laptop.png') },
-	{ name: 'mens-shirts', img: require('@com/assets/img/t-shirt.png') },
-	{ name: 'mens-shoes', img: require('@com/assets/img/shoes.png') },
-	{ name: 'mens-watches', img: require('@com/assets/img/watch.png') },
-	{ name: 'mobile-accessories', img: require('@com/assets/img/charger.png') },
-	{ name: 'motorcycle', img: require('@com/assets/img/motorbike.png') },
-	{ name: 'skin-care', img: require('@com/assets/img/skin-care.png') },
-	{ name: 'smartphones', img: require('@com/assets/img/smartphone.png') },
-	{ name: 'sports-accessories', img: require('@com/assets/img/gym-accessories.png') },
-	{ name: 'sunglasses', img: require('@com/assets/img/sunglasses.png') },
-	{ name: 'tablets', img: require('@com/assets/img/tablet.png') },
-	{ name: 'tops', img: require('@com/assets/img/shirt.png') },
-	{ name: 'vehicle', img: require('@com/assets/img/car.png') },
-	{ name: 'womens-bags', img: require('@com/assets/img/handbag.png') },
-	{ name: 'womens-dresses', img: require('@com/assets/img/woman-clothes.png') },
-	{ name: 'womens-jewellery', img: require('@com/assets/img/necklace.png') },
-	{ name: 'womens-shoes', img: require('@com/assets/img/high-heels.png') },
-	{ name: 'womens-watches', img: require('@com/assets/img/wristwatch.png') },
-];
+import { productTypes } from '@com/const';
 
 const Header = (): JSX.Element => {
 	const cx = getClassname(styles);
@@ -60,7 +34,7 @@ const Header = (): JSX.Element => {
 				<FontAwesomeIcon icon={faChevronDown} />
 				<div className="absolute border hidden rounded-2xl overflow-hidden max-h-96  bg-white top-full group-hover:flex flex-col z-10 ">
 					<div className="overflow-y-scroll">
-						{categories.map((cate, index) => {
+						{productTypes.CATEGORIES.map((cate, index) => {
 							return (
 								<Link key={index} to={routeName.categoryPage(cate.name)}>
 									<div className="w-full cursor-pointer hover:bg-[#d5d5d5]">
@@ -84,9 +58,12 @@ const Header = (): JSX.Element => {
 			<div className="text-lg h-full flex items-center justify-center px-4 cursor-pointer flex-1 rounded-xl hover:bg-[#f1f1f1] ">
 				On sale
 			</div>
-			<div className="text-lg  h-full flex items-center px-4 cursor-pointer flex-1 hover:bg-[#f1f1f1]  rounded-xl justify-center ">
+			<Link
+				to={routeName.categoryPage(productTypes.NEW_ARRIVAL)}
+				className="text-lg  h-full flex items-center px-4 cursor-pointer flex-1 hover:bg-[#f1f1f1]  rounded-xl justify-center "
+			>
 				New Arrivals
-			</div>
+			</Link>
 			<div className="text-lg  h-full flex items-center flex-1 hover:bg-[#f1f1f1]  rounded-xl px-4 cursor-pointer  justify-center ">
 				Brands
 			</div>
