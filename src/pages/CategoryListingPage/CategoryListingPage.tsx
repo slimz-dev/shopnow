@@ -30,14 +30,17 @@ const CategoryListingPage = (): JSX.Element => {
 	const cx = getClassname(styles);
 	const { categorySlug } = useParams();
 	const [skip, setSkip] = useState<number>(0);
-	const [sortValue, setSortValue] = useState<sortProps>({});
+	const [sortValue, setSortValue] = useState<sortProps>({
+		sortBy: 'price',
+		order: 'asc',
+	});
 	const [data, setData] = useState<DynamicState>({});
 	useEffect(() => {
 		if (categorySlug) {
 			const fetchProducts = async () => {
-				console.log(categorySlug, productTypes.NEW_ARRIVAL);
 				const result =
-					categorySlug === productTypes.NEW_ARRIVAL
+					categorySlug === productTypes.NEW_ARRIVAL ||
+					categorySlug === productTypes.ON_SALE
 						? await getNewArrival(20, skip, sortValue)
 						: categorySlug === productTypes.TOP_SELLING
 						? await getTopSelling(20, skip, sortValue)

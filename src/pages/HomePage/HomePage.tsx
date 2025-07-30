@@ -1,5 +1,5 @@
 import { url } from 'inspector';
-import { JSX } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import CategoryList from './components/CategoryList/CategoryList';
 import CustomerReviews from './components/CustomerReviews/CustomerReviews';
@@ -8,8 +8,13 @@ import getNewArrival from '@com/services/products/getNewArrivalProduct';
 import getTopSelling from '@com/services/products/getTopSelling';
 import routeName from '@com/config';
 import { productTypes } from '@com/const';
+import useIncrease from '@com/hooks/useIncrease';
+import { toast } from 'react-toastify';
 
 const HomePage = (): JSX.Element => {
+	const brandNum = useIncrease({ from: 0, to: 200, time: 500 });
+	const productNum = useIncrease({ from: 0, to: 2000, time: 500 });
+	const customerNum = useIncrease({ from: 0, to: 30000, time: 500 });
 	var settings = {
 		autoplay: true,
 		speed: 4000,
@@ -18,6 +23,7 @@ const HomePage = (): JSX.Element => {
 		slidesToShow: 6,
 		cssEase: 'linear',
 	};
+
 	return (
 		<div className="border-t -mx-20 border-black">
 			<div className="flex px-20 justify-between h-[600px] overflow-hidden bg-[#f2f0f1]">
@@ -29,20 +35,23 @@ const HomePage = (): JSX.Element => {
 						Browse through our diverse range of meticulously crafted garments, dessigned
 						to bring out your individually and cater to your sense of style.
 					</div>
-					<div className="bg-black my-6 p-3 px-10 w-fit text-white rounded-full">
+					<div
+						onClick={() => toast.warn('Feature Comming soon')}
+						className=" cursor-pointer bg-black my-6 p-3 px-10 w-fit text-white rounded-full"
+					>
 						Shop Now
 					</div>
 					<div className="flex items-center justify-between">
 						<div className="flex flex-col">
-							<span className="text-4xl font-bold ">200+</span>
+							<span className="text-4xl font-bold ">{`${brandNum}+`}</span>
 							<span>International Brands</span>
 						</div>
 						<div className="flex flex-col border-x px-8 border-gray-300">
-							<span className="text-4xl font-bold ">2,000+</span>
+							<span className="text-4xl font-bold ">{`${productNum}+`}</span>
 							<span>High-Quality Products</span>
 						</div>
 						<div className="flex flex-col">
-							<span className="text-4xl font-bold ">30,000+</span>
+							<span className="text-4xl font-bold ">{`${customerNum}+`}</span>
 							<span>Happy Customers</span>
 						</div>
 					</div>

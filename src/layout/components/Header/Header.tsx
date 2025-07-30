@@ -55,18 +55,18 @@ const Header = (): JSX.Element => {
 					</div>
 				</div>
 			</div>
-			<div className="text-lg h-full flex items-center justify-center px-4 cursor-pointer flex-1 rounded-xl hover:bg-[#f1f1f1] ">
+			<Link
+				to={routeName.categoryPage(productTypes.ON_SALE)}
+				className="text-lg h-full flex items-center justify-center px-4 cursor-pointer flex-1 rounded-xl hover:bg-[#f1f1f1] "
+			>
 				On sale
-			</div>
+			</Link>
 			<Link
 				to={routeName.categoryPage(productTypes.NEW_ARRIVAL)}
 				className="text-lg  h-full flex items-center px-4 cursor-pointer flex-1 hover:bg-[#f1f1f1]  rounded-xl justify-center "
 			>
 				New Arrivals
 			</Link>
-			<div className="text-lg  h-full flex items-center flex-1 hover:bg-[#f1f1f1]  rounded-xl px-4 cursor-pointer  justify-center ">
-				Brands
-			</div>
 			<SearchComponent />
 			<div className="flex-1   	h-full justify-center flex items-center">
 				<Link
@@ -85,9 +85,7 @@ const Header = (): JSX.Element => {
 						<div className="relative group flex h-full items-center">
 							<img
 								alt="user"
-								src={
-									'https://scontent-hkg1-1.xx.fbcdn.net/v/t39.30808-6/491920409_3976609982613727_1089570338156956631_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHVXJr9lr_nrJF7nbYxDA2ikIEMj38hkyKQgQyPfyGTIsFFwKYjyAFbRfgKpE43_WjFCaVyVLDfF_a8-hNsxqaN&_nc_ohc=IFRsGKyRQIYQ7kNvwGr0SZ5&_nc_oc=AdnhnpEsd5tKIhHXRI2dNUFhKQsfvjo2v4IqHdvfENgzB_yNAZmGI1aUL2dvB7DQcKwMDxJsyWkCSFJAQ2uJr-6B&_nc_zt=23&_nc_ht=scontent-hkg1-1.xx&_nc_gid=TKhCc-ssY2VlfGOu5ppBaA&oh=00_AfQ04C-nBClrmkm9eTkaTnEaGySjkQN8Q2by6RzZckbpPg&oe=68755CA4'
-								}
+								src={user.image}
 								className="h-[60%] aspect-square rounded-full object-fit hover:bg-[#f1f1f1] "
 							/>
 

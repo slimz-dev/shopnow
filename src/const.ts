@@ -1,6 +1,6 @@
 const NEW_ARRIVAL = 'new-arrivals';
 const TOP_SELLING = 'top-selling';
-const FEATURED = 'featured';
+const ON_SALE = 'on-sale';
 const CATEGORIES = [
 	{ name: 'beauty', img: require('@com/assets/img/eyelash.png') },
 	{ name: 'fragrances', img: require('@com/assets/img/fragrance.png') },
@@ -27,4 +27,4 @@ const CATEGORIES = [
 	{ name: 'womens-shoes', img: require('@com/assets/img/high-heels.png') },
 	{ name: 'womens-watches', img: require('@com/assets/img/wristwatch.png') },
 ];
-export const productTypes = { NEW_ARRIVAL, TOP_SELLING, FEATURED, CATEGORIES };
+export const productTypes = { NEW_ARRIVAL, TOP_SELLING, ON_SALE, CATEGORIES };

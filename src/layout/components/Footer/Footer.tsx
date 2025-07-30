@@ -3,85 +3,120 @@ import {
 	faCcMastercard,
 	faCcPaypal,
 	faCcVisa,
-	faFacebook,
 	faFacebookF,
 	faGithub,
 	faGooglePay,
 	faInstagram,
 	faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faMailForward } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { JSX } from 'react';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const footerList = [
 	{
 		topic: 'company',
 		options: [
-			{
-				name: 'About',
-			},
-			{
-				name: 'Features',
-			},
-			{
-				name: 'Works',
-			},
-			{
-				name: 'Career',
-			},
+			{ name: 'About', ref: 'https://www.notion.so/about' },
+			{ name: 'Features', ref: 'https://www.dropbox.com/features' },
+			{ name: 'Works', ref: 'https://www.behance.net/galleries' },
+			{ name: 'Career', ref: 'https://careers.airbnb.com/' },
 		],
 	},
 	{
 		topic: 'help',
 		options: [
-			{
-				name: 'Customer Support',
-			},
-			{
-				name: 'Delivery Details',
-			},
+			{ name: 'Customer Support', ref: 'https://support.spotify.com/' },
+			{ name: 'Delivery Details', ref: 'https://www.zara.com/us/en/help/shipping' },
 			{
 				name: 'Terms & Conditions',
+				ref: 'https://www.apple.com/legal/internet-services/terms/site.html',
 			},
-			{
-				name: 'Privacy Policy',
-			},
+			{ name: 'Privacy Policy', ref: 'https://policies.google.com/privacy' },
 		],
 	},
 	{
 		topic: 'faq',
 		options: [
-			{
-				name: 'Account',
-			},
-			{
-				name: 'Manage Deliveries',
-			},
-			{
-				name: 'Orders',
-			},
-			{
-				name: 'Payments',
-			},
+			{ name: 'Account', ref: 'https://help.netflix.com/en/node/10421' },
+			{ name: 'Manage Deliveries', ref: 'https://www.amazon.com/hz/mycd/delivery' },
+			{ name: 'Orders', ref: 'https://www.shein.com/user/orders' },
+			{ name: 'Payments', ref: 'https://www.paypal.com/us/webapps/mpp/pay-online' },
 		],
 	},
 	{
 		topic: 'resources',
 		options: [
-			{
-				name: 'Free eBooks',
-			},
-			{
-				name: 'Development Tutorial',
-			},
-			{
-				name: 'How to - Blog',
-			},
+			{ name: 'Free eBooks', ref: 'https://www.packtpub.com/free-learning' },
+			{ name: 'Development Tutorial', ref: 'https://developer.mozilla.org/en-US/docs/Web' },
+			{ name: 'How to - Blog', ref: 'https://www.wix.com/blog' },
 			{
 				name: 'Youtube Playlist',
+				ref: 'https://www.youtube.com/playlist?list=PL4cUxeGkcC9jLYyp2Aoh6hcWuxFDX6PBJ',
 			},
 		],
+	},
+];
+
+const iconList = [
+	{
+		icon: faTwitter,
+		link: 'https://twitter.com/',
+		color: 'black',
+		background: 'white',
+	},
+	{
+		icon: faFacebookF,
+		link: 'https://www.facebook.com/',
+		color: 'white',
+		background: 'black',
+	},
+	{
+		icon: faInstagram,
+		link: 'https://www.instagram.com/',
+		color: 'black',
+		background: 'white',
+	},
+	{
+		icon: faGithub,
+		link: 'https://github.com/',
+		color: 'black',
+		background: 'white',
+	},
+];
+
+const paymentList = [
+	{
+		icon: faCcVisa,
+		color: 'black',
+		background: 'white',
+		link: 'https://www.visa.com/',
+	},
+	{
+		icon: faCcMastercard,
+		color: 'black',
+		background: 'white',
+		link: 'https://www.mastercard.com/',
+	},
+	{
+		icon: faCcPaypal,
+		color: 'black',
+		background: 'white',
+		link: 'https://www.paypal.com/us/webapps/mpp/pay-online',
+	},
+	{
+		icon: faCcApplePay,
+		color: 'black',
+		background: 'white',
+		link: 'https://www.apple.com/apple-pay/',
+	},
+	{
+		icon: faGooglePay,
+		color: 'black',
+		background: 'white',
+		link: 'https://pay.google.com/intl/en_us/apps/billing',
 	},
 ];
 
@@ -98,19 +133,17 @@ const Footer = (): JSX.Element => {
 						women to men.
 					</div>
 					<div className="flex  mb-5">
-						<div className="rounded-full w-8 h-8 flex items-center justify-center  bg-[white] mr-4">
-							<FontAwesomeIcon icon={faTwitter} />
-						</div>
-
-						<div className="rounded-full w-8 h-8  flex items-center justify-center  bg-[black] mr-4">
-							<FontAwesomeIcon icon={faFacebookF} color="white" />
-						</div>
-						<div className="rounded-full w-8 h-8 flex items-center justify-center  bg-[white] mr-4">
-							<FontAwesomeIcon icon={faInstagram} />
-						</div>
-						<div className="rounded-full w-8 h-8 flex items-center justify-center  bg-[white] mr-4">
-							<FontAwesomeIcon icon={faGithub} />
-						</div>
+						{iconList.map((icon, index) => {
+							return (
+								<Link
+									to={icon.link}
+									key={index}
+									className={`rounded-full w-8 h-8 flex items-center justify-center  bg-[${icon.background}] mr-4`}
+								>
+									<FontAwesomeIcon icon={icon.icon} color={icon.color} />
+								</Link>
+							);
+						})}
 					</div>
 				</div>
 				{footerList.map((list, index) => {
@@ -124,8 +157,11 @@ const Footer = (): JSX.Element => {
 							</div>
 							{list.options.map((element, optionIndex) => {
 								return (
-									<div className="text-[gray] mb-4 text-lg" key={optionIndex}>
-										{element.name}
+									<div
+										className="text-[gray] cursor-pointer hover:underline mb-4 text-lg"
+										key={optionIndex}
+									>
+										<Link to={element.ref}>{element.name}</Link>
 									</div>
 								);
 							})}
@@ -136,21 +172,13 @@ const Footer = (): JSX.Element => {
 			<div className="flex justify-between mt-6 text-[gray]">
 				<div>ShopNow © 2000-2021, All rights reserved</div>
 				<div className="flex">
-					<div className="mr-4">
-						<FontAwesomeIcon size="2x" color="black" icon={faCcVisa} />
-					</div>
-					<div className="mr-4">
-						<FontAwesomeIcon size="2x" color="black" icon={faCcMastercard} />
-					</div>
-					<div className="mr-4">
-						<FontAwesomeIcon size="2x" color="black" icon={faCcPaypal} />
-					</div>
-					<div className="mr-4">
-						<FontAwesomeIcon size="2x" color="black" icon={faCcApplePay} />
-					</div>
-					<div className="mr-4">
-						<FontAwesomeIcon size="2x" color="black" icon={faGooglePay} />
-					</div>
+					{paymentList.map((icon, index) => {
+						return (
+							<Link to={icon.link} key={index} className="mr-4">
+								<FontAwesomeIcon size="2x" color="black" icon={icon.icon} />
+							</Link>
+						);
+					})}
 				</div>
 			</div>
 			<div
@@ -168,7 +196,10 @@ const Footer = (): JSX.Element => {
 							placeholder="Enter your email address"
 						/>
 					</div>
-					<div className="hover:bg-[#353131] hover:text-white cursor-pointer bg-white py-4 font-semibold text-center px-16 rounded-full text-black">
+					<div
+						onClick={() => toast.warn('Feature coming soon')}
+						className="hover:bg-[#353131] hover:text-white cursor-pointer bg-white py-4 font-semibold text-center px-16 rounded-full text-black"
+					>
 						Subscribe to Newsletter
 					</div>
 				</div>

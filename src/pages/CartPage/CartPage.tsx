@@ -6,6 +6,7 @@ import { updateCartFromRedux } from '@com/redux/slices/counter/counterSlice';
 import { faArrowRight, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { JSX } from 'react';
+import { toast } from 'react-toastify';
 
 const CartPage = (): JSX.Element => {
 	const cart = useAppSelector((state) => state.cart);
@@ -65,11 +66,20 @@ const CartPage = (): JSX.Element => {
 													</div>
 												</div>
 												<div className="flex flex-col justify-between items-end">
-													<FontAwesomeIcon
-														size="xl"
-														icon={faTrash}
-														color="red"
-													/>
+													<div
+														onClick={() =>
+															toast.warn(
+																'Cannot delete cause of API not allow LOL'
+															)
+														}
+														className="cursor-pointer"
+													>
+														<FontAwesomeIcon
+															size="xl"
+															icon={faTrash}
+															color="red"
+														/>
+													</div>
 													<ProductCount
 														value={item.quantity}
 														productID={item.id}
@@ -108,7 +118,10 @@ const CartPage = (): JSX.Element => {
 								<span>Total</span>
 								<span className="font-semibold">{`$${cart.discountedTotal}`}</span>
 							</div>
-							<div className="bg-black text-white flex items-center justify-center rounded-full p-6 my-8">
+							<div
+								onClick={() => toast.warn('Feature coming soon')}
+								className="bg-black cursor-pointer text-white flex items-center justify-center rounded-full p-6 my-8"
+							>
 								<div>
 									<span className="mr-2">Go to Checkout</span>
 									<FontAwesomeIcon size="xl" icon={faArrowRight} />
