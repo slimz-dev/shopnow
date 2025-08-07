@@ -11,7 +11,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { JSX } from 'react';
+import { JSX, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -121,10 +121,48 @@ const paymentList = [
 ];
 
 const Footer = (): JSX.Element => {
+	const bannerRef = useRef<any>(null);
+	const footerRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const resizeWindow = () => {
+			if (bannerRef && bannerRef.current && footerRef && footerRef.current) {
+				footerRef.current.style.paddingTop = `${bannerRef.current.clientHeight / 2 + 30}px`;
+			}
+		};
+		window.addEventListener('resize', resizeWindow);
+		if (bannerRef && bannerRef.current && footerRef && footerRef.current) {
+			footerRef.current.style.paddingTop = `${bannerRef.current.clientHeight / 2 + 30}px`;
+		}
+		return () => {
+			window.removeEventListener('resize', resizeWindow);
+		};
+	}, [bannerRef]);
 	return (
-		<div className="px-20 bg-[#f0f0f0] relative pt-32 pb-10">
-			<div className="flex gap-12 pb-10 border-b border-[#c5c5c5]">
-				<div className="flex-[1.5] flex flex-col ">
+		<div ref={footerRef} className="px-20 max-lg:px-6 bg-[#f0f0f0]  relative  pb-10">
+			<div className="flex-[1.5] lg:hidden flex flex-col ">
+				<div style={{ lineHeight: '80px' }} className=" font-[integral-cf] text-3xl">
+					shopnow
+				</div>
+				<div className="text-[gray] flex-1 w-2/3">
+					We have clothes that suits your style and which you're proud to wear. From women
+					to men.
+				</div>
+				<div className="flex mt-5  mb-5">
+					{iconList.map((icon, index) => {
+						return (
+							<Link
+								to={icon.link}
+								key={index}
+								className={`rounded-full w-8 h-8 flex items-center justify-center  bg-[${icon.background}] mr-4`}
+							>
+								<FontAwesomeIcon icon={icon.icon} color={icon.color} />
+							</Link>
+						);
+					})}
+				</div>
+			</div>
+			<div className="flex gap-12 max-lg:grid max-lg:grid-cols-2 pb-10 border-b border-[#c5c5c5]">
+				<div className="flex-[1.5] max-lg:hidden flex flex-col ">
 					<div style={{ lineHeight: '80px' }} className=" font-[integral-cf] text-3xl">
 						shopnow
 					</div>
@@ -169,7 +207,7 @@ const Footer = (): JSX.Element => {
 					);
 				})}
 			</div>
-			<div className="flex justify-between mt-6 text-[gray]">
+			<div className="flex justify-between max-sm:flex-col max-sm:justify-center max-sm:items-center mt-6 text-[gray]">
 				<div>ShopNow © 2000-2021, All rights reserved</div>
 				<div className="flex">
 					{paymentList.map((icon, index) => {
@@ -182,14 +220,15 @@ const Footer = (): JSX.Element => {
 				</div>
 			</div>
 			<div
+				ref={bannerRef}
 				style={{ transform: 'translateY(-50%)' }}
-				className="absolute   left-20 top-0 right-20 flex justify-between bg-black text-white p-10 px-20 rounded-xl"
+				className="absolute max-lg:flex-col  left-20 top-0 right-20 flex justify-between bg-black text-white p-10 px-20 rounded-xl"
 			>
-				<div className="font-[integral-cf] text-5xl w-[44%]">
+				<div className="font-[integral-cf] text-5xl w-[44%] max-xl:w-full max-lg:mb-6">
 					Stay upto date about our latest offers
 				</div>
-				<div className="w-[30%]">
-					<div className="bg-white flex py-4 mb-4 px-8 pr-16 rounded-full">
+				<div className="">
+					<div className="bg-white overflow-hidden flex py-4 mb-4 px-8 pr-16 rounded-full">
 						<FontAwesomeIcon color="gray" icon={faEnvelope} size="xl" />
 						<input
 							className=" flex-1 ml-3 outline-none text-black"

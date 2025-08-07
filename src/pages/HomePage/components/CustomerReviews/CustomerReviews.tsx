@@ -57,6 +57,14 @@ const CustomerReviews = (): JSX.Element => {
 		centerMode: true,
 		autoplaySpeed: 0,
 		slidesToShow: 3,
+		responsive: [
+			{
+				breakpoint: 1080,
+				settings: {
+					slidesToShow: 1,
+				},
+			},
+		],
 	};
 
 	const handlePrevious = () => {

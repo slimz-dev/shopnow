@@ -4,7 +4,7 @@ import Header from '../components/Header/Header';
 
 const DefaultLayout = ({ children }: { children: ReactNode }): JSX.Element => {
 	return (
-		<div>
+		<div className="max-[500px]:overflow-scroll">
 			<Header />
 			<div className="mx-20 mb-56  ">{children}</div>
 			<Footer />

@@ -22,11 +22,21 @@ const HomePage = (): JSX.Element => {
 		autoplaySpeed: 0,
 		slidesToShow: 6,
 		cssEase: 'linear',
+		responsive: [
+			{
+				breakpoint: 1080,
+				settings: {
+					slidesToShow: 3,
+					rows: 2,
+					slidesPerRow: 1,
+				},
+			},
+		],
 	};
 
 	return (
-		<div className="border-t -mx-20 border-black">
-			<div className="flex px-20 justify-between h-[600px] overflow-hidden bg-[#f2f0f1]">
+		<div className="border-t  -mx-20 border-black">
+			<div className="flex px-20 justify-between h-[600px] max-xl:min-h-[600px] max-xl:h-auto max-lg:flex-col overflow-hidden max-lg:px-6 bg-[#f2f0f1]">
 				<div className="flex-1 pt-20">
 					<div className="font-[integral-cf] flex flex-col text-6xl">
 						find clothes that matches your style
@@ -37,11 +47,11 @@ const HomePage = (): JSX.Element => {
 					</div>
 					<div
 						onClick={() => toast.warn('Feature Comming soon')}
-						className=" cursor-pointer bg-black my-6 p-3 px-10 w-fit text-white rounded-full"
+						className=" cursor-pointer bg-black max-lg:w-full max-lg:text-center max-lg:py-5 my-6 p-3 px-10 w-fit text-white rounded-full"
 					>
 						Shop Now
 					</div>
-					<div className="flex items-center justify-between">
+					<div className="flex items-center max-lg:flex-wrap justify-between">
 						<div className="flex flex-col">
 							<span className="text-4xl font-bold ">{`${brandNum}+`}</span>
 							<span>International Brands</span>
@@ -56,10 +66,10 @@ const HomePage = (): JSX.Element => {
 						</div>
 					</div>
 				</div>
-				<div className="flex-[2] flex justify-end">
+				<div className="flex-[2] max-[1700px]:!flex-1 flex justify-end">
 					<img
 						src="https://daniel2silva.github.io/shop/img/casal%202.png"
-						className="w-[1080px]"
+						className="w-[70%]"
 						alt="model"
 					/>
 				</div>
@@ -67,38 +77,38 @@ const HomePage = (): JSX.Element => {
 			<div className="overflow-hidden">
 				<Slider {...settings}>
 					<img
-						className="h-32"
+						className="h-32 max-lg:h-24 "
 						alt="brand logo"
 						src={require('@com/assets/img/zara.jpg')}
 					/>
 					<img
-						className="h-32"
+						className="h-32 max-lg:h-24"
 						alt="brand logo"
 						src={require('@com/assets/img/louis-vuitton.jpg')}
 					/>
 					<img
-						className="h-32"
+						className="h-32 max-lg:h-24"
 						alt="brand logo"
 						src={require('@com/assets/img/prada.jpg')}
 					/>
 					<img
-						className="h-32"
+						className="h-32 max-lg:h-24"
 						alt="brand logo"
 						src={require('@com/assets/img/gucci.jpg')}
 					/>
 					<img
-						className="h-32"
+						className="h-32 max-lg:h-24"
 						alt="brand logo"
 						src={require('@com/assets/img/versace.jpg')}
 					/>
 					<img
-						className="h-32"
+						className="h-32 max-lg:h-24"
 						alt="brand logo"
 						src={require('@com/assets/img/calvin-klein.jpg')}
 					/>
 				</Slider>
 			</div>
-			<div className="px-20 mb-20">
+			<div className="max-lg:px-6 px-20 mb-20">
 				<ItemList
 					header="new arrivals"
 					fetch={() => getNewArrival(4)}

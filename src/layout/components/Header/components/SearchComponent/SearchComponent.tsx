@@ -45,8 +45,9 @@ const SearchComponent = (): JSX.Element => {
 			onFocus={() => setIsDisplaySearchResult(true)}
 			onMouseLeave={() => setIsDisplaySearchResult(false)}
 			onMouseEnter={() => setIsDisplaySearchResult(true)}
+			className="w-[35%] max-[1400px]:w-[25%] "
 		>
-			<div className="relative rounded-full items-center w-[600px] bg-[#f0f0f0] flex-[4] flex  p-3 px-5">
+			<div className="relative rounded-full items-center  bg-[#f0f0f0]  flex  p-3 px-5">
 				{isSearching ? (
 					<FontAwesomeIcon icon={faSpinner} className=" animate-spin" />
 				) : (

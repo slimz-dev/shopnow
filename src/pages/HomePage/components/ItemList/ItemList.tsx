@@ -22,16 +22,18 @@ const ItemList = ({ header, fetch, navigate }: itemListProps): JSX.Element => {
 			<div className="pb-20 flex justify-center items-center font-[integral-cf] text-5xl">
 				{header}
 			</div>
-			<div className="flex flex-row justify-between">
+			<div className="flex flex-row max-lg:overflow-x-scroll gap-5 justify-between">
 				{data.map((item, index) => {
 					return (
 						<div key={index}>
 							<img
 								src={item.thumbnail}
 								alt="product thumbnail"
-								className="w-96 rounded-2xl border"
+								className="w-96  max-[1800px]:w-80 max-[1500px]:w-72 max-[1400px]:w-64 max-[1300px]:w-56 rounded-2xl border"
 							/>
-							<div className="font-bold py-2 text-xl">{item.title}</div>
+							<div className="font-bold py-2 text-xl w-96  max-[1800px]:w-80 max-[1500px]:w-72 max-[1400px]:w-64 max-[1300px]:w-56 whitespace-nowrap overflow-hidden text-ellipsis">
+								{item.title}
+							</div>
 							<div className="flex items-center">
 								<Rating
 									size={20}
@@ -39,7 +41,7 @@ const ItemList = ({ header, fetch, navigate }: itemListProps): JSX.Element => {
 									readonly
 									initialValue={item.rating}
 								/>
-								<div className="text-sm pt-[6px] flex items-end ml-2">
+								<div className="text-sm pt-[6px] flex max-lg:text-xs items-end ml-2">
 									{item.rating}
 								</div>
 							</div>
