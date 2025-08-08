@@ -24,7 +24,7 @@ const ListProducts = ({ items }: { items: any[] }): JSX.Element => {
 									/>
 								</div>
 								<div className="flex flex-col flex-1">
-									<div className="font-semibold h-full my-2 text-2xl">
+									<div className="font-semibold h-full my-2 text-2xl whitespace-nowrap overflow-hidden text-ellipsis">
 										{item.title}
 									</div>
 									<div className="flex items-center mb-2">
@@ -36,18 +36,18 @@ const ListProducts = ({ items }: { items: any[] }): JSX.Element => {
 										<span className="leading-[24px] pt-1 ml-2">{`${item.rating}`}</span>
 										<span className="leading-[24px] pt-1 text-[gray]">{`/5`}</span>
 									</div>
-									<div className="flex">
-										<div className="font-semibold text-2xl">{`$${(
+									<div className="flex flex-wrap">
+										<div className="font-semibold text-2xl max-md:text-xl">{`$${(
 											(item.price * (100 - item.discountPercentage)) /
 											100
 										).toFixed(2)}`}</div>
 										{item.discountPercentage && (
 											<>
-												<div className="relative mx-3 text-2xl">
+												<div className="relative mx-3 text-2xl max-md:text-xl">
 													<span className="text-[#c4c5c7]">{`$${item.price}`}</span>
 													<div className="w-[110%] h-[2px] -left-[5%]  absolute top-[54%] bg-[#c4c5c7]"></div>
 												</div>
-												<div className="text-[red] font-semibold bg-red-100 h-full p-1 px-3 rounded-3xl">
+												<div className="text-[red] font-semibold max-md:px-2 bg-red-100 h-full p-1 px-3 rounded-3xl">
 													{`-${item.discountPercentage}%`}
 												</div>
 											</>

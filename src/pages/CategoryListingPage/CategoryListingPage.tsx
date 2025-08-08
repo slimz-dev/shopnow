@@ -77,11 +77,11 @@ const CategoryListingPage = (): JSX.Element => {
 	return (
 		<div className="border-t  border-[gray]">
 			<PageIndex category={categorySlug ? categorySlug : ''} />
-			<div className="flex items-center justify-between">
-				<div className="uppercase font-semibold text-3xl">
+			<div className="flex items-center justify-between flex-wrap">
+				<div className="uppercase font-semibold text-3xl max-md:text-2xl">
 					{categorySlug && SlugToTitle(categorySlug)}
 				</div>
-				<div className="flex text-[grey] items-center">
+				<div className="flex text-[grey] items-center max-md:text-sm flex-wrap">
 					<div className="mr-4">{`Showing ${data.skip + 1}-${data.skip + data.limit} of ${
 						data.total
 					} Products`}</div>
@@ -124,7 +124,7 @@ const CategoryListingPage = (): JSX.Element => {
 					</div>
 				</div>
 			</div>
-			<div className="grid grid-cols-5 mt-6 gap-8">
+			<div className="grid grid-cols-5 mt-6 gap-8 max-2xl:grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-[550px]:grid-cols-1">
 				<ListProducts items={data.products} />
 			</div>
 			<PaginationButton

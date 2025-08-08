@@ -28,7 +28,7 @@ const PaginationButton = ({
 	return (
 		<>
 			{total && (
-				<div className="border-t pt-4 mt-8 flex items-center justify-between">
+				<div className="border-t pt-4 mt-8 flex items-center justify-between flex-wrap">
 					{currentPage !== 1 ? (
 						<div className="border px-4 py-2 rounded-xl hover:bg-[#f7f7f7] cursor-pointer">
 							<FontAwesomeIcon size="lg" icon={faArrowLeft} />
