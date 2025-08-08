@@ -29,7 +29,9 @@ const CartPage = (): JSX.Element => {
 			{cart.userId && (
 				<div className="border-t border-[gray]">
 					<PageIndex category="Cart" />
-					<div className="font-[integral-cf] text-5xl mb-6">Your cart</div>
+					<div className="font-[integral-cf] text-5xl mb-6 max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
+						Your cart
+					</div>
 					<div className="flex gap-8">
 						<div className="rounded-xl overflow-hidden flex-[2]">
 							<div className=" h-[500px] rounded-xl overflow-y-scroll  border   px-8  ">

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const CategoryList = (): JSX.Element => {
 	return (
 		<div className="bg-[#f0f0f0] rounded-3xl p-20 max-lg:p-6">
-			<div className="pb-20 flex justify-center items-center font-[integral-cf] text-5xl">
+			<div className="pb-20 flex justify-center items-center font-[integral-cf] text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
 				Browse by category
 			</div>
 			<div className="max-lg:flex-col max-lg:flex grid grid-cols-[2fr_3fr] gap-5 mb-5">

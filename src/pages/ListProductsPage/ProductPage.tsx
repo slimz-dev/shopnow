@@ -117,7 +117,9 @@ const ProductPage = (): JSX.Element => {
 						</div>
 						<div className="flex-[4] px-5">
 							<div className="border-b  border-[gray] py-5">
-								<div className="font-[integral-cf] text-5xl">{item.title}</div>
+								<div className="font-[integral-cf] text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
+									{item.title}
+								</div>
 								<div className="flex items-center">
 									<Rating initialValue={item.rating} readonly size={25} />
 									<div className="ml-3">{`${item.rating}/5`}</div>

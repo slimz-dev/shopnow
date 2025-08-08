@@ -19,7 +19,7 @@ const ItemList = ({ header, fetch, navigate }: itemListProps): JSX.Element => {
 	}, []);
 	return (
 		<div className="py-20 border-t border-[#e1e1e1]">
-			<div className="pb-20 flex justify-center items-center font-[integral-cf] text-5xl">
+			<div className="pb-20 flex justify-center items-center font-[integral-cf] text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
 				{header}
 			</div>
 			<div className="flex flex-row max-lg:overflow-x-scroll gap-5 justify-between">

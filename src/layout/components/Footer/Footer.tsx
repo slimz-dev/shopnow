@@ -222,13 +222,13 @@ const Footer = (): JSX.Element => {
 			<div
 				ref={bannerRef}
 				style={{ transform: 'translateY(-50%)' }}
-				className="absolute max-lg:flex-col  left-20 top-0 right-20 flex justify-between bg-black text-white p-10 px-20 rounded-xl"
+				className="absolute max-[500px]:left-0 max-[500px]:right-0 max-lg:flex-col max-xl:justify-center flex-wrap w-fit  left-20 top-0 right-20 flex justify-between bg-black text-white p-10 max-sm:p-5 px-20 rounded-xl"
 			>
-				<div className="font-[integral-cf] text-5xl w-[44%] max-xl:w-full max-lg:mb-6">
+				<div className="font-[integral-cf] text-5xl w-[44%] max-xl:w-full max-lg:text-4xl max-md:text-3xl max-sm:text-2xl max-xl:mb-6">
 					Stay upto date about our latest offers
 				</div>
-				<div className="">
-					<div className="bg-white overflow-hidden flex py-4 mb-4 px-8 pr-16 rounded-full">
+				<div className="max-xl:flex max-xl:flex-col max-xl:flex-1">
+					<div className="bg-white overflow-hidden max-xl:flex-1 flex py-4 mb-4 px-8 pr-16 rounded-full">
 						<FontAwesomeIcon color="gray" icon={faEnvelope} size="xl" />
 						<input
 							className=" flex-1 ml-3 outline-none text-black"

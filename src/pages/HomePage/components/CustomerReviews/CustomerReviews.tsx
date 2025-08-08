@@ -76,9 +76,11 @@ const CustomerReviews = (): JSX.Element => {
 	};
 	return (
 		<div className="pb-32 pt-20">
-			<div className="flex justify-between items-end   mb-10">
-				<div className="font-[integral-cf] text-5xl">Our happy customers</div>
-				<div className="flex w-[3%] justify-between">
+			<div className="flex justify-between flex-wrap items-end   mb-10">
+				<div className="font-[integral-cf] text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
+					Our happy customers
+				</div>
+				<div className="max-lg:hidden flex gap-4 items-center">
 					<div className="cursor-pointer" onClick={handlePrevious}>
 						<FontAwesomeIcon size="lg" icon={faArrowLeft} />
 					</div>
