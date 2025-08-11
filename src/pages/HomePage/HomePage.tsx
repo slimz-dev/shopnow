@@ -35,7 +35,7 @@ const HomePage = (): JSX.Element => {
 	};
 
 	return (
-		<div className="border-t  -mx-20 border-black">
+		<div className="border-t  -mx-20 max-lg:-mx-6 border-black">
 			<div className="flex px-20 justify-between h-[600px] max-xl:min-h-[600px] max-xl:h-auto max-lg:flex-col overflow-hidden max-lg:px-6 bg-[#f2f0f1]">
 				<div className="flex-1 pt-20">
 					<div className="font-[integral-cf] flex flex-col text-6xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">

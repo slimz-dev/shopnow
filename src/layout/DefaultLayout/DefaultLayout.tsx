@@ -6,7 +6,7 @@ const DefaultLayout = ({ children }: { children: ReactNode }): JSX.Element => {
 	return (
 		<div className="max-[500px]:overflow-scroll">
 			<Header />
-			<div className="mx-20 mb-56  ">{children}</div>
+			<div className="mx-20 mb-56 max-lg:mx-6 ">{children}</div>
 			<Footer />
 		</div>
 	);

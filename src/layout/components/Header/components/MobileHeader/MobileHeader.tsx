@@ -10,7 +10,7 @@ const MobileHeader = ({ toggleDrawer, cart }: any): JSX.Element => {
 	return (
 		<header
 			className={cx(
-				'lg:hidden h-20 text-lg flex  items-center  px-20 py-2 justify-between font-medium font-sans'
+				'lg:hidden h-20 text-lg flex  items-center  px-20 max-lg:px-6 py-2 justify-between font-medium font-sans'
 			)}
 		>
 			<div className="flex items-center">

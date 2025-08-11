@@ -22,7 +22,7 @@ const ProductRecommend = ({ category }: ProductRecommendProps): JSX.Element => {
 			<div className="font-[integral-cf] my-10 text-6xl flex items-center justify-center">
 				You might also like
 			</div>
-			<div className="flex gap-8">
+			<div className="grid grid-cols-5 mt-6 gap-8 max-2xl:grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-[550px]:grid-cols-1">
 				<ListProducts items={products} />
 			</div>
 		</div>

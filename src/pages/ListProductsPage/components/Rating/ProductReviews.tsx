@@ -40,7 +40,7 @@ const ProductReviews = (): JSX.Element => {
 		<>
 			{Object.keys(data).length > 0 && (
 				<div>
-					<div className="flex items-center justify-between my-10">
+					<div className="flex items-center flex-wrap justify-between my-10">
 						<div>
 							<span className="text-3xl font-semibold">All Reviews</span>
 							<span className="ml-2 text-[gray]">{`(${data.totalReviews})`}</span>
@@ -51,7 +51,7 @@ const ProductReviews = (): JSX.Element => {
 							</div>
 						</div>
 					</div>
-					<div className="grid grid-cols-2 gap-8  text-lg">
+					<div className="grid grid-cols-2 max-lg:grid-cols-1 gap-8  text-lg">
 						{data.data.map((customer: any, index: number) => {
 							return (
 								<div

@@ -71,6 +71,7 @@ const ProductPage = (): JSX.Element => {
 		}
 	};
 	const handleImageModal = (index: number) => {
+		if (window.innerWidth <= 1080) return;
 		setIsOpenImgModal(true);
 		setModalSelectedItem(index);
 		document.body.style.overflow = 'hidden';
@@ -80,8 +81,8 @@ const ProductPage = (): JSX.Element => {
 			{Object.keys(item).length !== 0 && (
 				<div className="border-t border-[gray]">
 					<PageIndex category={item.category} item={item.title} activeCategory={true} />
-					<div className="flex h-[700px]">
-						<div className="flex-1 overflow-y-scroll">
+					<div className="flex h-[700px] max-lg:flex-col max-lg:h-auto">
+						<div className="flex-1 max-lg:hidden overflow-y-scroll">
 							<div className="grid gap-4 mr-1 ">
 								{item.images.map((image: string, index: number) => {
 									return (
@@ -107,13 +108,40 @@ const ProductPage = (): JSX.Element => {
 						</div>
 						<div
 							onClick={() => handleImageModal(selectedItem)}
-							className="flex-[3] px-4 cursor-pointer"
+							className="flex-[3]   cursor-pointer"
 						>
 							<img
 								alt="product"
 								className="border h-full rounded-2xl"
 								src={item.images[selectedItem]}
 							/>
+						</div>
+						<div className="flex-1 max-lg:pt-6 hidden max-lg:block overflow-y-scroll  max-lg:overflow-y-hidden">
+							<div className="grid gap-4 max-lg:overflow-x-auto max-lg:overflow-y-hidden  max-lg:flex mr-1 ">
+								{item.images.map((image: string, index: number) => {
+									return (
+										<div
+											onClick={() => handleImageModal(index)}
+											onMouseOver={() => setSelectedItem(index)}
+											key={index}
+											className={cx(
+												' max-lg:w-[calc((100%-2rem)/3)] overflow-hidden flex-none  border rounded-2xl ',
+												{
+													'border-black': index === selectedItem,
+												}
+											)}
+										>
+											<img
+												alt="product"
+												className={cx(
+													' hover:scale-150 duration-1000 cursor-pointer'
+												)}
+												src={image}
+											/>
+										</div>
+									);
+								})}
+							</div>
 						</div>
 						<div className="flex-[4] px-5">
 							<div className="border-b  border-[gray] py-5">
@@ -208,7 +236,7 @@ const ProductPage = (): JSX.Element => {
 								onMouseOver={(e) => handleAnimation(e, 0)}
 								onClick={() => setActiveTab(0)}
 								className={cx(
-									'flex-1 flex items-center justify-center text-2xl  pb-5 ',
+									'flex-1 flex items-center justify-center text-2xl max-lg:text-xl  pb-5 ',
 									{
 										'text-black': activeTab === 0,
 									}
@@ -220,7 +248,7 @@ const ProductPage = (): JSX.Element => {
 								onMouseOver={(e) => handleAnimation(e, 1)}
 								onClick={() => setActiveTab(1)}
 								className={cx(
-									'flex-1 flex items-center justify-center text-2xl  pb-5 ',
+									'flex-1 flex items-center justify-center text-2xl max-lg:text-xl max-sm:text-lg  pb-5 ',
 									{
 										'text-black': activeTab === 1,
 									}
@@ -232,7 +260,7 @@ const ProductPage = (): JSX.Element => {
 								onMouseOver={(e) => handleAnimation(e, 2)}
 								onClick={() => setActiveTab(2)}
 								className={cx(
-									'flex-1 flex items-center justify-center text-2xl pb-5 ',
+									'flex-1 flex items-center justify-center text-2xl max-lg:text-xl max-sm:text-lg pb-5 ',
 									{
 										'text-black': activeTab === 2,
 									}
