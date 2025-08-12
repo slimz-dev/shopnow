@@ -32,7 +32,7 @@ const ProductCount = ({ value, handlerFunc, productID }: productCountProps): JSX
 	};
 
 	return (
-		<div className="p-2 px-4 rounded-full bg-[#eeeeee] flex items-center justify-between">
+		<div className="p-2 px-4 rounded-full max-xl:px-2 bg-[#eeeeee] flex items-center justify-between">
 			<FontAwesomeIcon
 				onClick={() => handleCount(0)}
 				className="cursor-pointer"

@@ -32,13 +32,13 @@ const CartPage = (): JSX.Element => {
 					<div className="font-[integral-cf] text-5xl mb-6 max-lg:text-4xl max-md:text-3xl max-sm:text-2xl">
 						Your cart
 					</div>
-					<div className="flex gap-8">
+					<div className="flex gap-8 max-lg:flex-col min-w-[350px]">
 						<div className="rounded-xl overflow-hidden flex-[2]">
 							<div className=" h-[500px] rounded-xl overflow-y-scroll  border   px-8  ">
 								{cart.products.map((item) => {
 									return (
 										<div className=" flex border-b py-8">
-											<div className="mr-4">
+											<div className="mr-4 flex-none">
 												<img
 													className="border rounded-xl w-32 h-3w-32"
 													alt="product thumbnail"
@@ -48,13 +48,13 @@ const CartPage = (): JSX.Element => {
 											<div className="flex  justify-between h-32 flex-1">
 												<div className="flex flex-col justify-between ">
 													<div>
-														<div className="font-semibold text-2xl">
+														<div className="font-semibold max-xl:text-xl text-2xl">
 															{item.title}
 														</div>
 													</div>
 													<div className="flex">
-														<div className="text-2xl font-semibold">{`$${item.discountedTotal}`}</div>
-														<div className="relative mx-3 text-2xl">
+														<div className="text-2xl font-semibold max-xl:text-xl">{`$${item.discountedTotal}`}</div>
+														<div className="relative mx-3 text-2xl max-xl:text-xl">
 															<span className="text-[#c4c5c7]">
 																{(
 																	item.price * item.quantity
@@ -97,7 +97,7 @@ const CartPage = (): JSX.Element => {
 							</div>
 						</div>
 
-						<div className="border p-4 rounded-xl flex-1 h-fit">
+						<div className="border p-4 rounded-xl flex-1 h-fit min-w-[350px] max-[350px]:-mx-[24px]">
 							<div className="text-2xl font-semibold mb-6">Order Summary</div>
 							<div className="border-b">
 								<div className="my-4 text-xl flex justify-between items-center">
