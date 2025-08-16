@@ -7,7 +7,6 @@ type ProductRecommendProps = {
 };
 const ProductRecommend = ({ category }: ProductRecommendProps): JSX.Element => {
 	const [products, setProducts] = useState<any[]>([]);
-	console.log(category, products);
 	useEffect(() => {
 		const fetchProductRecommendations = async () => {
 			const result = await getProductRecommendation(category, 5);

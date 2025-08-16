@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 
 const ListProducts = ({ items }: { items: any[] }): JSX.Element => {
-	console.log(items);
 	return (
 		<>
 			{items &&

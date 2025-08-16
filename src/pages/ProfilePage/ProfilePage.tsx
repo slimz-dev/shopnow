@@ -8,9 +8,9 @@ const ProfilePage = (): JSX.Element => {
 	const [activeTab, setActiveTab] = useState<number>(0);
 
 	return (
-		<div className="flex mx-auto w-[70%] mt-6">
+		<div className="flex  mx-auto w-[70%] mt-6">
 			<ProfileSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-			<div className="p-6 bg-slate-100 flex-1 shadow rounded-md ">
+			<div className="p-6   flex-1 bg-slate-100  shadow rounded-md ">
 				{activeTab === 0 && <BasicProfile />}
 				{activeTab === 1 && <Bank />}
 				{activeTab === 2 && <Address />}

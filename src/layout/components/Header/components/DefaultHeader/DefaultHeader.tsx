@@ -111,13 +111,16 @@ const DefaultHeader = ({ isAuthenticated, user, cart, setIsAuthenticated }: any)
 							</div>
 						</div>
 					) : (
-						<div className="flex h-full items-center justify-center">
+						<Link
+							to={routeName.loginPage()}
+							className="flex h-full items-center justify-center"
+						>
 							<FontAwesomeIcon
 								size="xl"
 								icon={faUserCircle}
 								className="hover:bg-[#f1f1f1] "
 							/>
-						</div>
+						</Link>
 					)}
 				</div>
 			</div>

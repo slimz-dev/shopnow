@@ -4,11 +4,13 @@ import handleRefreshToken from './users/refreshToken';
 const baseApi = axios.create({
 	baseURL: 'https://dummyjson.com',
 });
+
+const noAuthApi = axios.create({
+	baseURL: 'https://dummyjson.com',
+});
 let refreshedToken: any = null;
-let requestQueue: any = [];
 baseApi.interceptors.response.use(
 	(res: any) => {
-		console.log(res);
 		return res;
 	},
 	async (error) => {
@@ -26,7 +28,6 @@ baseApi.interceptors.response.use(
 						return Promise.reject(error);
 					}
 					console.error('Unauthorized: Attempting to refresh token.');
-					console.log(refreshedToken);
 					if (!refreshedToken) {
 						refreshedToken = handleRefreshToken();
 					}
@@ -56,4 +57,4 @@ baseApi.interceptors.response.use(
 	}
 );
 
-export { baseApi };
+export { baseApi, noAuthApi };

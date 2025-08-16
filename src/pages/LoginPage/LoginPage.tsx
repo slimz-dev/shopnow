@@ -24,9 +24,13 @@ function Login() {
 					setIsAuthenticated(() => {
 						return true;
 					});
+				} else {
+					alert('Login failed. Please check your username and password.');
+					return;
 				}
 			};
 			loginUser();
+			setIsLoggedIn(false);
 		}
 		if (Object.keys(user).length !== 0) {
 			navigate(routeName.homePage());
@@ -57,6 +61,7 @@ function Login() {
 				<h2 className="text-4xl font-bold mb-8 text-center tracking-wide">Login</h2>
 
 				<form onSubmit={handleSubmit}>
+					<div>Test account username: chloem</div>
 					<input
 						type="text"
 						name="username"
@@ -65,6 +70,8 @@ function Login() {
 						required
 						className="w-full mb-6 px-5 py-3 bg-white text-black rounded-lg border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-700"
 					/>
+					<div>Test account password: chloempass</div>
+
 					<input
 						type="password"
 						name="password"

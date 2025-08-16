@@ -9,7 +9,7 @@ import {
 	faTruckFast,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { JSX, useEffect, useRef, useState } from 'react';
+import { JSX, useContext, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 import FAQ from './components/FAQ/FAQ';
@@ -20,11 +20,13 @@ import style from './ProductPage.module.scss';
 import ImgModal from './components/ImgModal/ImgModal';
 import { useAppDispatch, useAppSelector } from '@com/redux/hooks';
 import { updateCartFromRedux } from '@com/redux/slices/counter/counterSlice';
+import { AuthContext } from '@com/contexts/AuthContext';
 
 type DynamicState = {
 	[key: string]: any;
 };
 const ProductPage = (): JSX.Element => {
+	const { isAuthenticated } = useContext(AuthContext);
 	const { productID } = useParams<string>();
 	const [selectedItem, setSelectedItem] = useState<number>(0);
 	const [modalSelectedItem, setModalSelectedItem] = useState<number>(0);
@@ -52,6 +54,10 @@ const ProductPage = (): JSX.Element => {
 		setQuantity(productQuantity);
 	};
 	const handleAddToCart = () => {
+		if (!isAuthenticated) {
+			alert('Please login to add items to your cart.');
+			return;
+		}
 		dispatch(
 			updateCartFromRedux({
 				cartID: cart.id,
@@ -66,7 +72,6 @@ const ProductPage = (): JSX.Element => {
 	const handleAnimation = (e: any, index: number) => {
 		const width = e.target.offsetWidth;
 		if (lineRef && lineRef.current) {
-			console.log(`translateX(${width * index})`);
 			lineRef.current.style.transform = `translateX(${width * index}px)`;
 		}
 	};

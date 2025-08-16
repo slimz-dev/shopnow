@@ -19,7 +19,7 @@ const Bank = (): JSX.Element => {
 	};
 	return (
 		<>
-			<div className="flex items-center justify-between border-b mb-6">
+			<div className="flex  items-center justify-between border-b mb-6">
 				<div>
 					<h2 className="text-xl font-semibold">Bank Details</h2>
 					<h3 className="border-b pb-2  italic">
@@ -29,16 +29,16 @@ const Bank = (): JSX.Element => {
 			</div>
 			<div>
 				{Object.keys(user.bank).length === 0 ? (
-					<div className="flex justify-center items-center flex-col">
+					<div className="flex  justify-center items-center flex-col">
 						<p className="text-gray-500">No bank details added yet.</p>
 						<p className="text-gray-500">
 							Please add your bank details to proceed with transactions.
 						</p>
 					</div>
 				) : (
-					<div className="flex items-center justify-between ">
-						<div className="flex  items-center">
-							<div className="h-16">
+					<div className="flex  items-center justify-between flex-wrap">
+						<div className="flex   items-center">
+							<div className="h-16 max-lg:hidden">
 								<img
 									alt="bank"
 									className="h-full aspect-square"
@@ -60,7 +60,7 @@ const Bank = (): JSX.Element => {
 								</div>
 							</div>
 
-							<div className="flex items-center">
+							<div className="flex items-center ">
 								{hiddenAccountNumber(bankDetails.accountNumber)}
 							</div>
 						</div>

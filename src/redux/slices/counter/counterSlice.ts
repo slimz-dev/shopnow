@@ -90,6 +90,9 @@ export const cartSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCart.fulfilled, (state, action) => {
+			if (!action.payload) {
+				return;
+			}
 			state.discountedTotal = action.payload.discountedTotal;
 			state.id = action.payload.id;
 			state.total = action.payload.total;

@@ -57,7 +57,7 @@ function Register() {
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		if (validateForm()) {
-			alert('Registered successfully!');
+			alert('Registered only for demo! Please use the given credentials to login.');
 			navigate('/login');
 		} else {
 			alert('Please correct the form fields.');
@@ -135,7 +135,7 @@ function Register() {
 							className="w-full p-3 border border-gray-300 rounded-md"
 						/>
 						<div className="flex flex-col justify-between">
-							<form onSubmit={handleSubmit} className="space-y-4">
+							<div className="space-y-4">
 								<input
 									name="username"
 									placeholder="Username"
@@ -184,7 +184,7 @@ function Register() {
 								>
 									Register
 								</button>
-							</form>
+							</div>
 
 							<p
 								className="mt-6 text-center text-gray-600 cursor-pointer hover:text-black text-sm"

@@ -19,7 +19,6 @@ const BasicProfile = (): JSX.Element => {
 	});
 	useEffect(() => {
 		if (user) {
-			console.log(user);
 			setUserInfo({
 				id: user.id,
 				firstName: user.firstName,
@@ -102,13 +101,13 @@ const BasicProfile = (): JSX.Element => {
 			<h3 className="  border-b pb-2 mb-6 italic">
 				Manage your profile to enhance account security and personalize your experience
 			</h3>
-			<form className="flex ">
-				<div className="grid flex-[2]  grid-cols-1 mr-8 gap-6">
+			<form className="flex flex-wrap">
+				<div className="grid flex-[2] max-xl:flex-none  grid-cols-1 mr-8 gap-6">
 					<div className="flex items-center justify-end">
 						<label className="block text-sm font-medium text-gray-700">Username</label>
 						<input
 							type="text"
-							className=" block w-[70%] ml-3 bg-slate-100 outline-none  p-2"
+							className=" block w-[60%] ml-3 bg-slate-100 outline-none  p-2"
 							value={user.username || 'username'}
 							readOnly
 						/>
@@ -122,7 +121,7 @@ const BasicProfile = (): JSX.Element => {
 							onChange={(e) => handleChangeUserInfo(e)}
 							type="text"
 							name="firstName"
-							className=" block w-[70%] ml-3  border border-gray-300 rounded-md p-2"
+							className=" block w-[60%] ml-3  border border-gray-300 rounded-md p-2"
 							placeholder="Enter first name"
 							value={userInfo.firstName}
 						/>
@@ -135,7 +134,7 @@ const BasicProfile = (): JSX.Element => {
 							onChange={(e) => handleChangeUserInfo(e)}
 							type="text"
 							name="maidenName"
-							className=" block w-[70%] ml-3  border border-gray-300 rounded-md p-2"
+							className=" block w-[60%] ml-3  border border-gray-300 rounded-md p-2"
 							placeholder="Enter maiden name"
 							value={userInfo.maidenName}
 						/>
@@ -146,7 +145,7 @@ const BasicProfile = (): JSX.Element => {
 							onChange={(e) => handleChangeUserInfo(e)}
 							type="text"
 							name="lastName"
-							className=" block w-[70%] ml-3  border border-gray-300 rounded-md p-2"
+							className=" block w-[60%] ml-3  border border-gray-300 rounded-md p-2"
 							placeholder="Enter last name"
 							value={userInfo.lastName}
 						/>
@@ -158,7 +157,7 @@ const BasicProfile = (): JSX.Element => {
 							onChange={(e) => handleChangeUserInfo(e)}
 							type="text"
 							name="email"
-							className=" block w-[70%] ml-3  border border-gray-300 rounded-md p-2"
+							className=" block w-[60%] ml-3  border border-gray-300 rounded-md p-2"
 							placeholder="Enter email"
 							value={userInfo.email}
 						/>
@@ -170,7 +169,7 @@ const BasicProfile = (): JSX.Element => {
 							onChange={(e) => handleChangeUserInfo(e)}
 							type="text"
 							name="phone"
-							className=" block w-[70%] ml-3  border border-gray-300 rounded-md p-2"
+							className=" block w-[60%] ml-3  border border-gray-300 rounded-md p-2"
 							placeholder="Enter your phone"
 							value={userInfo.phone}
 						/>
@@ -178,13 +177,13 @@ const BasicProfile = (): JSX.Element => {
 
 					<div className="flex items-center justify-end">
 						<label className="block text-sm font-medium text-gray-700">Gender</label>
-						<div className="w-[70%] ml-3 flex items-center">
+						<div className="w-[60%] ml-3 flex items-center">
 							<div className="flex mr-3">
 								<input
 									onChange={(e) => handleChangeUserInfo(e)}
 									type="radio"
 									name="gender"
-									className="mr-2  block w-[70%]  border border-gray-300 rounded-md p-2"
+									className="mr-2  block w-[60%]  border border-gray-300 rounded-md p-2"
 									value="male"
 									checked={userInfo.gender === 'male'}
 								/>
@@ -195,7 +194,7 @@ const BasicProfile = (): JSX.Element => {
 									onChange={(e) => handleChangeUserInfo(e)}
 									type="radio"
 									name="gender"
-									className="mr-2  block w-[70%]  border border-gray-300 rounded-md p-2"
+									className="mr-2  block w-[60%]  border border-gray-300 rounded-md p-2"
 									value="female"
 									checked={userInfo.gender === 'female'}
 								/>
@@ -206,7 +205,7 @@ const BasicProfile = (): JSX.Element => {
 									onChange={(e) => handleChangeUserInfo(e)}
 									type="radio"
 									name="gender"
-									className="mr-2  block w-[70%]  border border-gray-300 rounded-md p-2"
+									className="mr-2  block w-[60%]  border border-gray-300 rounded-md p-2"
 									value="other"
 									checked={userInfo.gender === 'other'}
 								/>
@@ -221,12 +220,12 @@ const BasicProfile = (): JSX.Element => {
 						</label>
 						<input
 							type="date"
-							className=" block w-[70%] ml-3 border border-gray-300 rounded-md p-2"
+							className=" block w-[60%] ml-3 border border-gray-300 rounded-md p-2"
 							onChange={(e) => handleChangeUserInfo(e)}
 							value={userInfo.birthDate && getDate(userInfo.birthDate)}
 						/>
 					</div>
-					<div className="pt-4 w-[70%]  flex flex-row-reverse">
+					<div className="pt-4 w-[60%]  flex flex-row-reverse">
 						<button
 							onClick={handleSaveChanges}
 							type="button"
@@ -237,7 +236,7 @@ const BasicProfile = (): JSX.Element => {
 					</div>
 				</div>
 				<div className="flex flex-1 justify-center   ">
-					<div className="border-l flex flex-col justify-center px-16 h-fit">
+					<div className="border-l max-xl:border-none flex flex-col justify-center px-16 h-fit">
 						<div className="w-48 mb-4 mt-8 flex items-center justify-center  rounded-full bg-gray-200 overflow-hidden">
 							<img
 								src={image || user.image}

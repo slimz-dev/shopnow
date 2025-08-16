@@ -93,7 +93,7 @@ const DrawerNavigation = ({
 			</Link>
 			{user && (
 				<div
-					onClick={() => signOut(setIsAuthenticated(false))}
+					onClick={() => signOut(() => setIsAuthenticated(false))}
 					className="flex items-center py-2 px-4 hover:bg-[#e5e5e5] cursor-pointer"
 				>
 					<FontAwesomeIcon className="w-6" icon={faDoorOpen} size="xl" />

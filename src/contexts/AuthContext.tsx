@@ -19,7 +19,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 				dispatch(fetchCart(result.data.id));
 			}
 		};
-		getUser();
+		if (isAuthenticated) {
+			getUser();
+		}
 	}, [isAuthenticated]);
 	const data = {
 		user,

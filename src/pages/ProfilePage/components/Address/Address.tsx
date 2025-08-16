@@ -19,7 +19,7 @@ const Address = (): JSX.Element => {
 					</h3>
 				</div>
 			</div>
-			<div className="flex items-center justify-between">
+			<div className="flex flex-wrap items-center justify-between">
 				<div>
 					<div className="flex  items-center mb-4">
 						<div className="border-r border-blue-200 pr-3 mr-3">{user.firstName}</div>

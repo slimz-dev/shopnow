@@ -39,9 +39,9 @@ const PaginationButton = ({
 					)}
 
 					<div className="flex  ">
-						{[1, 2].map((item) => {
+						{[1, 2].map((item, index) => {
 							return (
-								<>
+								<div key={index}>
 									{currentPage > item + 2 && (
 										<div
 											className={cx(
@@ -52,7 +52,7 @@ const PaginationButton = ({
 											{item}
 										</div>
 									)}
-								</>
+								</div>
 							);
 						})}
 						<>
@@ -70,7 +70,7 @@ const PaginationButton = ({
 							.fill('')
 							.map((element, index) => {
 								return (
-									<>
+									<div key={index}>
 										{index + 1 <= currentPage + 2 &&
 											index + 1 >= currentPage - 2 && (
 												<div
@@ -86,7 +86,7 @@ const PaginationButton = ({
 													{index + 1}
 												</div>
 											)}
-									</>
+									</div>
 								);
 							})}
 						<>
@@ -102,7 +102,7 @@ const PaginationButton = ({
 						</>
 						{[totalPage - 1, totalPage].map((item) => {
 							return (
-								<>
+								<div key={item}>
 									{currentPage < item - 2 && (
 										<div
 											className={cx(
@@ -113,7 +113,7 @@ const PaginationButton = ({
 											{item}
 										</div>
 									)}
-								</>
+								</div>
 							);
 						})}
 					</div>

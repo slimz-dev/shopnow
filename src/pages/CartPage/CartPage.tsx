@@ -12,7 +12,6 @@ const CartPage = (): JSX.Element => {
 	const cart = useAppSelector((state) => state.cart);
 	const dispatch = useAppDispatch();
 	const updatecart = async (productQuantity: number, productID: number) => {
-		console.log(productQuantity, productID);
 		dispatch(
 			updateCartFromRedux({
 				cartID: cart.id,
